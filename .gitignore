@@ -1,0 +1,61 @@
+# Python build artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+dist/
+build/
+
+# Local runtime / work dirs
+.knotliedge/
+
+# Secrets (API keys / local overrides)
+.env
+
+# Extra local data trees (not part of minimal public README layout)
+data/article_workspace/
+data/06_metadata/
+data/07_venue_radar/
+
+# Alternate folder name (legacy skills / templates); public docs live in README only
+doc/
+
+# Conda/OpenCL vendor scratch files (should not live in repo)
+.opencl_vendors/
+
+# Root scratch scripts (local one-offs)
+tmp_*.py
+
+# Local corpus, vault, Chroma persistence (keep only .gitkeep placeholders)
+data/01_raw_pdf/**
+!data/01_raw_pdf/.gitkeep
+data/02_markdown_vault/**
+!data/02_markdown_vault/.gitkeep
+!data/02_markdown_vault/assets/
+data/02_markdown_vault/assets/**
+!data/02_markdown_vault/assets/.gitkeep
+data/03_chroma_db/**
+!data/03_chroma_db/.gitkeep
+
+# Generated reports / workflow artifacts
+output/**
+!output/.gitkeep
+
+# Sandbox runtime data (configs under sandbox/configs/ remain tracked)
+sandbox/data/
+
+# Embedding weights (download locally, e.g. ModelScope BGE-M3)
+models/
+
+# Local SQLite stores (FTS / radar / citation graphs when created under repo root or data paths)
+*.sqlite3
+
+# Internal / agent-oriented docs (not published with public snapshot)
+docs/
+PROJECT_STATUS.md
+.cursorrules
+核心架构.md
+
+# OS / editor
+.DS_Store
+Thumbs.db

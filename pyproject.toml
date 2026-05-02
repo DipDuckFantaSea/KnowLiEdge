@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "knotliedge"
+version = "0.1.0"
+description = "Local knowledge base MVP for research assistant (stage-1)."
+requires-python = ">=3.10"
+readme = "README.md"
+dependencies = [
+  "networkx>=3.2",
+  "pyvis>=0.3.2",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

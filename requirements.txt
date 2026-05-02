@@ -1,0 +1,30 @@
+pyyaml>=6.0.1
+tqdm>=4.66.0
+chromadb>=0.5.0
+openai>=1.0.0
+
+# Metadata enrichment (OpenAlex + PDF metadata)
+pypdf>=5.0.0
+requests>=2.32.0
+
+# Citation graph (OpenAlex expansion + visualization)
+networkx>=3.2
+pyvis>=0.3.2
+
+# MinerU runtime dependency (some environments ship an incomplete pylatexenc)
+pylatexenc==2.10
+
+# Embeddings (BGE-M3 recommended). Install a matching torch manually (CPU/GPU).
+sentence-transformers>=2.6.0
+
+# MCP server
+fastmcp>=0.4.0
+
+# Topic discovery (optional; used by scripts/topic_discovery.py)
+bertopic>=0.17.4
+umap-learn>=0.5.12
+hdbscan>=0.8.42
+plotly>=6.7.0
+
+# Terminal UX (optional; also used by knotliedge logging RichHandler when installed)
+rich>=13.7.0

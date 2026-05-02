@@ -1,0 +1,70 @@
+# Copy to `configs/default.yaml` and adjust paths for your machine (repo ships a sane default.yaml).
+# Embedding weights: download locally (e.g. BAAI/bge-m3 via ModelScope), then set model_name_or_path.
+
+paths:
+  raw_pdf_dir: data/01_raw_pdf
+  markdown_vault_dir: data/02_markdown_vault
+  markdown_assets_dir: data/02_markdown_vault/assets
+  chroma_db_dir: data/03_chroma_db
+
+markdown:
+  vault_filename_pattern: "{doc_id}.md"
+  frontmatter_version: "v1"
+
+chunking:
+  target_chars: 1000
+  overlap_chars: 150
+  min_chunk_chars: 20
+  exclude_reference_sections: true
+  reference_section_titles:
+    - References
+    - Reference
+    - Bibliography
+    - Works Cited
+    - Literature
+    - Literature Cited
+    - 参考文献
+    - 引用文献
+    - 参考资料
+
+embedding:
+  # Local directory containing BGE-M3 (or other SentenceTransformer path)
+  model_name_or_path: "models/bge-m3"
+  device: "cpu"
+  batch_size: 16
+  normalize_embeddings: true
+
+chroma:
+  collection_name: "knotliedge_v1"
+  http_host: "localhost"
+  http_port: 37651
+
+openalex:
+  mailto: "you@example.com"
+  api_key:
+
+ieee_xplore:
+  min_interval_s: 60
+  user_agent: "KnotLiEdge/0.1 (+mailto:you@example.com) ieee-xplore-fetch"
+  trust_env_for_proxy: false
+  max_retries: 4
+  backoff_base_s: 5
+
+venue_radar:
+  lookback_days: 300
+  target_venues:
+    - "https://openalex.org/S4306418182"
+    - "https://openalex.org/S4306419226"
+    - "https://openalex.org/S4306418181"
+    - "https://openalex.org/S4306420609"
+    - "https://openalex.org/S162355128"
+    - "https://openalex.org/S198879913"
+    - "https://openalex.org/S4387280707"
+    - "https://openalex.org/S19887683"
+    - "https://openalex.org/S4363607897"
+    - "https://openalex.org/S4210202669"
+    - "https://openalex.org/S4210185519"
+    - "https://openalex.org/S4363605375"
+    - "https://openalex.org/S83637746"
+    - "https://openalex.org/S116977442"
+    - "https://openalex.org/S93916849"

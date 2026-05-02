@@ -1,0 +1,5 @@
+data/01_raw_pdf/
+data/02_markdown_vault/
+sandbox/data/01_raw_pdf/
+sandbox/data/02_markdown_vault/
+.env/

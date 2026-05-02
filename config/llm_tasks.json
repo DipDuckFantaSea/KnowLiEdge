@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "placeholder": "__USER_QUERY__",
+  "tasks": {
+    "research_keyword_zh": {
+      "connection": {
+        "base_url": "https://api.deepseek.com/v1",
+        "api_key_env": "DEEPSEEK_API_KEY"
+      },
+      "request": {
+        "model": "deepseek-v4-flash",
+        "temperature": 0,
+        "max_tokens": 256,
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are a research literature retrieval assistant. Your only task is to read the user's research question or plan and output a single line of academic search keywords: preserve all domain-specific technical terms from the user text without omission or duplication; drop generic planning words (e.g. 拟定/计划/覆盖/以及/和/与/的/请/需要) that do not help retrieval. Output format: one line only, tokens separated by a single ASCII space (0x20). No quotes, no numbering, no JSON, no markdown, no explanations, no leading or trailing text."
+          },
+          {
+            "role": "user",
+            "content": "Extract search keywords from the following text. Output one space-separated line only.\n\n__USER_QUERY__"
+          }
+        ]
+      }
+    },
+    "deepseek_chat": {
+      "connection": {
+        "base_url": "https://api.deepseek.com/v1",
+        "api_key_env": "DEEPSEEK_API_KEY"
+      },
+      "request": {
+        "model": "deepseek-v4-pro",
+        "messages": [
+          { "role": "system", "content": "You are a helpful assistant" },
+          { "role": "user", "content": "__USER_QUERY__" }
+        ],
+        "stream": false,
+        "reasoning_effort": "high",
+        "extra_body": { "thinking": { "type": "enabled" } }
+      }
+    },
+    "document_profile_compress_qwen": {
+      "connection": {
+        "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        "api_key_env": "DASHSCOPE_API_KEY"
+      },
+      "request": {
+        "model": "qwen-plus",
+        "temperature": 0,
+        "max_tokens": 1800,
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are a document profiling assistant for academic papers. Your input is a raw profile draft built from a paper's markdown (TOC + abstract/conclusion excerpts). Your task: compress it into a compact, information-dense Chinese plain text profile while preserving technical terms, symbols, material names, process nodes, key metrics, and section structure. Do NOT invent facts. Do NOT add citations. Output MUST be plain text only (no JSON, no markdown fences). Keep it short: target <= 1000 tokens. Prefer the structure:\n1) 研究问题/动机\n2) 方法/实验设计/建模\n3) 关键结论与指标\n4) 适用边界/局限\n5) 目录骨架(可简化)\nIf information is missing, omit the item."
+          },
+          { "role": "user", "content": "__USER_QUERY__" }
+        ]
+      }
+    },
+    "document_profile_compress_deepseek": {
+      "connection": {
+        "base_url": "https://api.deepseek.com/v1",
+        "api_key_env": "DEEPSEEK_API_KEY"
+      },
+      "request": {
+        "model": "deepseek-v4-pro",
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are a document profiling assistant for academic papers. Your input is a raw profile draft built from a paper's markdown (TOC + abstract/conclusion excerpts). Your task: compress it into a compact, information-dense Chinese plain text profile while preserving technical terms, symbols, material names, process nodes, key metrics, and section structure. Do NOT invent facts. Do NOT add citations. Output MUST be plain text only (no JSON, no markdown fences). Keep it short: target <= 1000 tokens. Prefer the structure:\n1) 研究问题/动机\n2) 方法/实验设计/建模\n3) 关键结论与指标\n4) 适用边界/局限\n5) 目录骨架(可简化)\nIf information is missing, omit the item."
+          },
+          { "role": "user", "content": "__USER_QUERY__" }
+        ],
+        "stream": false
+      }
+    }
+  }
+}
+
